@@ -1,11 +1,11 @@
 #
 # Lama Cleaner Dockerfile
-# @author Loreto Parisi (loretoparisi at gmail dot com)
+# @author Reddexx
 #
 
 FROM python:3.8.13-slim-bullseye
 
-LABEL maintainer Loreto Parisi loretoparisi@gmail.com
+LABEL maintainer Reddexx
 
 WORKDIR app
 
@@ -25,16 +25,15 @@ RUN npm install n -g && \
 # yarn
 RUN npm install -g yarn
 
+#Create Directory
+RUN mkdir -p /lama_cleaner && cd /lama_cleaner
+
 # webapp
-RUN set -x; \
-    curl -SL -o lama-cleaner.tar.gz https://github.com/Sanster/lama-cleaner/archive/refs/tags/0.14.0.tar.gz  \
-    && mkdir -p lama_cleaner/app/ \
-    && tar xvf lama-cleaner.tar.gz -C lama_cleaner --strip-components=1 \
-    && rm lama-cleaner.tar.gz
-    
-RUN cd lama_cleaner/lama_cleaner/app/ && \
-    yarn && \
-    yarn build
+RUN set -x; curl -SL -o lama-cleaner.tar.gz https://github.com/Sanster/lama-cleaner/archive/refs/tags/0.14.0.tar.gz && \
+tar xvf lama-cleaner.tar.gz -C /lama_cleaner --strip-components=1 && \
+rm lama-cleaner.tar.gz
+
+RUN cd /lama_cleaner/lama_cleaner/app && yarn && yarn build
 
 EXPOSE 8080
 
