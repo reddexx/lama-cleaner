@@ -3,7 +3,7 @@
 # @author Loreto Parisi (loretoparisi at gmail dot com)
 #
 
-FROM python:3.7.4-slim-buster
+FROM python:3.8.13-slim-bullseye
 
 LABEL maintainer Loreto Parisi loretoparisi@gmail.com
 
