@@ -16,9 +16,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     npm
 
 # python requirements
-COPY . .
-COPY requirements.txt /etc/tmp/requirements.txt
-RUN pip install -r /etc/tmp/requirements.txt
+
+RUN pip install torch>=1.8.2 opencv-python flask_cors flask==1.1.4 flaskwebgui tqdm pydantic loguru pytest markupsafe==2.0.1
 
 # nodejs
 RUN npm install n -g && \
