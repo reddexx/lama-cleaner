@@ -4,7 +4,7 @@
 #
 
 FROM python:3.8.13-slim-bullseye
-
+ENV LAMA_CLEANER_VERSION=0.14.0
 LABEL maintainer Reddexx
 
 WORKDIR app
@@ -29,7 +29,7 @@ RUN npm install -g yarn
 RUN mkdir -p /lama_cleaner && cd /lama_cleaner
 
 # webapp
-RUN set -x; curl -SL -o lama-cleaner.tar.gz https://github.com/Sanster/lama-cleaner/archive/refs/tags/0.14.0.tar.gz && \
+RUN set -x; curl -SL -o lama-cleaner.tar.gz https://github.com/Sanster/lama-cleaner/archive/refs/tags/${LAMA_CLEANER_VERSION}.tar.gz && \
 tar xvf lama-cleaner.tar.gz -C /lama_cleaner --strip-components=1 && \
 rm lama-cleaner.tar.gz
 
