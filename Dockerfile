@@ -26,6 +26,12 @@ RUN npm install n -g && \
 RUN npm install -g yarn
 
 # webapp
+RUN set -x; \
+    curl -SL -o lama-cleaner.tar.gz https://github.com/Sanster/lama-cleaner/archive/refs/tags/0.14.0.tar.gz  \
+    && mkdir -p lama_cleaner/app/ \
+    && tar xvf lama-cleaner.tar.gz -C lama_cleaner/app/ --strip-components=1 \
+    && rm lama-cleaner.tar.gz
+    
 RUN cd lama_cleaner/app/ && \
     yarn && \
     yarn build
